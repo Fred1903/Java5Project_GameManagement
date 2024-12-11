@@ -12,6 +12,6 @@ public class ParticipationDTO {
     //private Long id;  Do we need the id to create a participation ? No so we will see
     private Long idGame;
     private Long idPlayer;
-    private int score;
+    private Integer score;
     private boolean isWinner;
 }

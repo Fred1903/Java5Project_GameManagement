@@ -8,10 +8,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateGameDTO {
+public class GetGameDTO {
     private LocalDate gameDate;
-    private int maximumScore;
+    private Integer maximumScore;
     private GameType gameType;
     private Long idHost;
 }
-    

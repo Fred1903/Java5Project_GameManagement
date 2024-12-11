@@ -19,15 +19,10 @@ public class GameDAO implements IGameDAO {
     @Override
     public Game saveGame(Game game) {
         return gameRepository.save(game);
-    }
+    }   
 
     @Override
-    public boolean isGameExisting(Long id) {
-        return gameRepository.existsById(id);
-    }
-
-    @Override
-    public Optional<Game> findGame(Long id) {
+    public Optional<Game> findGameById(Long id) {
         return gameRepository.findById(id);
     }
 

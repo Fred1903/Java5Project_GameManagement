@@ -6,10 +6,13 @@ import be.helb_prigogine.game_manager.entities.GameType;
 import lombok.Getter;
 import lombok.Setter;
 
+    
 @Getter
 @Setter
-public class GetGameDTO {
+public class GameDTO {
+    private Long id;
     private LocalDate gameDate;
-    private int maximumScore;
+    private Integer maximumScore;
     private GameType gameType;
+    private Long idHost;
 }

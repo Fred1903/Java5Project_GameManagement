@@ -19,13 +19,13 @@ import lombok.Setter;
 @NoArgsConstructor  //and one empty
 @Getter //Getter ans setter for all fields
 @Setter
-@Table(name = "participation", schema = "java5Project")
+@Table(name = "participation", schema = "java5project")
 public class Participation {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private Long idGame;
     private Long idPlayer;
-    private int score;
+    private Integer score;
     private boolean isWinner;    
 }

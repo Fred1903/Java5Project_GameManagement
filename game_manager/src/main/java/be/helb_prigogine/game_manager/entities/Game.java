@@ -2,6 +2,8 @@ package be.helb_prigogine.game_manager.entities;
 
 //Jakarta Persistence nécessaire à importer pour pouvoir use les @ suivants :
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,13 +23,14 @@ import lombok.Setter;
 @NoArgsConstructor  //and one empty
 @Getter //Getter ans setter for all fields
 @Setter
-@Table(name = "game", schema = "java5Project")
+@Table(name = "game", schema = "java5project")
 public class Game {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private LocalDate gameDate;
-    private int maximumScore;
+    private Integer maximumScore;
+    @Enumerated(EnumType.STRING)
     private GameType gameType;
     private Long idHost;
 }
