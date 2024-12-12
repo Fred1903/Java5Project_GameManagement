@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter 
 @Setter 
 public class ParticipationDTO {
-    //private Long id;  Do we need the id to create a participation ? No so we will see
+    private Long id; 
     private Long idGame;
     private Long idPlayer;
     private Integer score;

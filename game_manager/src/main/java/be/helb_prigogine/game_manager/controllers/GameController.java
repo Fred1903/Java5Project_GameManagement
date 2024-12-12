@@ -49,8 +49,7 @@ import org.springframework.web.bind.annotation.RequestParam;
             }
             catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error with the Game creation : "+e.getMessage());
-            }
-            
+            } 
         }
 
         @PutMapping("update/{id}")

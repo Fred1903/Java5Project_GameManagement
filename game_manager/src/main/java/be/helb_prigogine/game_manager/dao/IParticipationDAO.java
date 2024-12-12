@@ -6,7 +6,7 @@ import be.helb_prigogine.game_manager.entities.Participation;
 
 public interface IParticipationDAO {
     Participation savParticipation(Participation participation);
-    boolean isParticipationExisting(Long id);
-    Optional<Participation> findParticipation(Long id);
+    Optional<Participation> findParticipationById(Long id);
+    Optional<Participation> findParticipationByIdPlayerAndIdGame(Long idPlayer, Long idGame);
     void deleteParticipation(Participation participation);
 }

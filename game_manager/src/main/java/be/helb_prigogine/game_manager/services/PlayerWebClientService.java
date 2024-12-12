@@ -1,14 +1,19 @@
 package be.helb_prigogine.game_manager.services;
 
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
+import reactor.core.publisher.Mono;
+
 @Service
-public class PlayerWebClient implements IPlayerWebClient {
+public class PlayerWebClientService implements IPlayerWebClientService {
     private final WebClient webClient;
 
-    public PlayerWebClient(WebClient webClient) {
+    public PlayerWebClientService(WebClient webClient) {
         this.webClient = webClient;
     }
 
@@ -26,5 +31,19 @@ public class PlayerWebClient implements IPlayerWebClient {
         } catch (Exception e) {
             throw new RuntimeException("Error while trying to check host id", e);
         }
-    }    
+    }
+
+
+    @Override
+    public void updatePlayerStatistics(Long idPlayer, Integer points) {
+        try{
+            Map<String, Integer> requestBody = Map.of("points", points);
+            webClient.put().uri("/update/stats/{id}",idPlayer).bodyValue(requestBody ).retrieve().toBodilessEntity().block();
+            System.out.println("update/stats/{id}"+idPlayer);
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Failed to update player statistics for ID: " + idPlayer, e);
+        }
+    }  
+
 }
