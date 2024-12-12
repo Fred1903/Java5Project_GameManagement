@@ -35,9 +35,12 @@ public class GameService implements IGameService {
     @Transactional
     @Override
     public GameDTO createGame(CreateGameDTO createGameDTO) { 
-        boolean isGameTypeValid = Arrays.stream(GameType.values()).anyMatch(gameType -> gameType.name().equals(createGameDTO.getGameType().toString()));
-        if (!isGameTypeValid)throw new IllegalArgumentException("The game type has to be one of the following : " + Arrays.toString(GameType.values()));
-        //if (!playerWebClient.isPlayerExisting(createGameDTO.getIdHost()))throw new IllegalArgumentException("Host ID does not exist in the Player service.");
+        boolean isGameTypeValid = createGameDTO.getGameType() != null && Arrays.stream(GameType.values())
+                .anyMatch(gameType -> gameType == createGameDTO.getGameType());
+
+        if (!isGameTypeValid) {
+            throw new IllegalArgumentException("The game type has to be one of the following : " + Arrays.toString(GameType.values()));
+        }
         checkIfPlayerExists(createGameDTO.getIdHost());
 
         Game game = modelMapper.map(createGameDTO, Game.class);
@@ -51,7 +54,7 @@ public class GameService implements IGameService {
         return modelMapper.map(savedGame, GameDTO.class);
     }
 
-    void checkIfPlayerExists(Long idPlayer){
+    public void checkIfPlayerExists(Long idPlayer){
         if (!playerWebClient.isPlayerExisting(idPlayer)){
             throw new IllegalArgumentException("There is no player with this id : "+idPlayer);
         }
@@ -70,7 +73,7 @@ public class GameService implements IGameService {
         return modelMapper.map(game,GameDTO.class);
     }   
 
-    void checkIfGameExists(Long idGame){
+    public void checkIfGameExists(Long idGame){
         if(!gameDAO.findGameById(idGame).isPresent()){
             throw new RuntimeException("Game with ID " + idGame + " does not exist");
         }
